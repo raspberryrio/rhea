@@ -1,363 +1,713 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Charity: Water - Give life through water.</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap');
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Open Sans', Arial, sans-serif;
-      background: #fafafa;
-    }
-    header {
-      width: 100%;
-    }
-    .nav-bar {
-      display: flex;
-      align-items: center;
-      background: #f7ce54;
-      height: 70px;
-      position: relative;
-      z-index: 2;
-      padding: 0;
-    }
-    .logo-section {
-      display: flex;
-      align-items: center;
-      background: #fff;
-      padding: 0 28px 0 0;
-      height: 70px;
-      position: relative;
-      min-width: 120px;
-    }
-    .logo-icon {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      background: #fff;
-      padding: 0;
-      margin: 0;
-      width: auto;
-      height: auto;
-      border-radius: 6px;
-      box-sizing: border-box;
-      margin-right: 12px;
-      margin-left: 24px;
-    }
-    .logo-icon img {
-      display: block;
-      max-height: 56px;
-      max-width: 160px;
-      width: auto;
-      height: 56px;
-      object-fit: contain;
-      background: #fff;
-      border-radius: 6px;
-    }
-    .top-row {
-      display: flex;
-      align-items: center;
-      flex: 1;
-      height: 70px;
-      width: 100%;
-      margin-left: 0;
-      position: relative;
-    }
-    nav {
-      display: flex;
-      flex: 1;
-      justify-content: flex-end;
-      gap: 90px;
-      margin-right: 460px; /* Moved even more to the left */
-    }
-    nav a {
-      color: #fff;
-      font-size: 20px;
-      font-weight: 400;
-      font-family: 'Open Sans', Arial, sans-serif;
-      text-decoration: none;
-      letter-spacing: 0.06em;
-      padding: 0 8px;
-      transition: color 0.2s;
-      line-height: 70px;
-      position: relative;
-    }
-    nav a:hover {
-      color: #444;
-    }
-    .search-container {
-      display: flex;
-      align-items: center;
-      background: #fff;
-      border-radius: 6px;
-      padding: 0 12px 0 6px;
-      height: 42px;
-      min-width: 230px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.07);
-      border: none;
-      position: absolute;
-      right: 90px;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-    .search-input {
-      border: none;
-      outline: none;
-      font-size: 18px;
-      height: 28px;
-      background: transparent;
-      width: 140px;
-      padding: 0 6px 0 8px;
-      color: #333;
-      font-family: 'Open Sans', Arial, sans-serif;
-    }
-    .search-input::placeholder {
-      color: #bbb;
-      font-size: 17px;
-      letter-spacing: 0.01em;
-    }
-    .search-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-right: 8px;
-      margin-left: 2px;
-      width: 22px;
-      height: 22px;
-    }
-    .search-icon svg {
-      width: 20px;
-      height: 20px;
-      display: block;
-      color: #f7ce54;
-    }
-    .search-clear {
-      cursor: pointer;
-      border: none;
-      background: transparent;
-      color: #bbb;
-      font-size: 21px;
-      margin-left: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 22px;
-      height: 22px;
-      transition: color 0.2s;
-    }
-    .search-clear:hover {
-      color: #e57373;
-    }
+<!DOCTYPE html> 
 
-    .hero-section {
-      position: relative;
-      width: 100vw;
-      height: 100vh;
-      min-height: 560px;
-      overflow: hidden;
-      display: flex;
-      align-items: stretch;
-      background: #000;
-    }
-    .hero-bg {
-      position: absolute;
-      top: 0; left: 0; bottom: 0; right: 0;
-      width: 120vw;
-      height: 110vh;
-      min-height: 650px;
-      object-fit: cover;
-      object-position: 80% center;
-      z-index: 1;
-      background: #000;
-      transition: object-position 0.3s;
-    }
-    .hero-overlay {
-      position: relative;
-      z-index: 2;
-      color: #fff;
-      max-width: 700px;
-      padding: 90px 0 0 70px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    .hero-overlay h1 {
-      font-family: 'Georgia Pro', Georgia, serif !important;
-      font-size: 54px;
-      font-weight: 700;
-      margin: 0 0 20px 0;
-      line-height: 1.08;
-      text-shadow: 0 2px 14px rgba(0,0,0,0.22);
-    }
-    .hero-overlay .subtitle {
-      font-size: 23px;
-      font-weight: 400;
-      margin: 0 0 38px 0;
-      line-height: 1.4;
-      text-shadow: 0 2px 14px rgba(0,0,0,0.18);
-      font-family: 'Avenir Next Arabic', 'Avenir', Arial, sans-serif !important;
-    }
-    .help-btn {
-      background: #f7ce54;
-      color: #fff;
-      font-size: 22px;
-      border: none;
-      border-radius: 28px;
-      padding: 14px 38px;
-      font-weight: 600;
-      margin-bottom: 32px;
-      box-shadow: 0 6px 24px rgba(0,0,0,0.09);
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .help-btn:hover {
-      background: #f4b800;
-    }
-    .subscription {
-      font-size: 21px;
-      color: #fff;
-      text-shadow: 0 2px 12px rgba(0,0,0,0.16);
-      font-family: 'Open Sans', Arial, sans-serif;
-    }
-    .subscription a {
-      color: #9ac3ff;
-      text-decoration: underline;
-      font-family: inherit;
-    }
-    @media (max-width: 1300px) {
-      nav {
-        margin-right: 210px;
-        gap: 60px;
-      }
-    }
-    @media (max-width: 1100px) {
-      nav {
-        margin-right: 120px;
-        gap: 40px;
-      }
-      .search-container {
-        right: 40px;
-      }
-      .hero-overlay {
-        padding: 60px 20px 0 20px;
-        max-width: 95vw;
-      }
-      .hero-bg {
-        width: 160vw;
-        min-height: 450px;
-        height: 70vh;
-        object-position: 84% center;
-      }
-    }
-    @media (max-width: 900px) {
-      nav {
-        margin-right: 10px;
-        gap: 22px;
-      }
-    }
-    @media (max-width: 750px) {
-      .nav-bar,
-      .top-row {
-        flex-direction: column;
-        align-items: stretch;
-        height: auto;
-      }
-      nav {
-        justify-content: flex-start;
-        margin-right: 0;
-        gap: 18px;
-      }
-      .search-container {
-        position: static;
-        margin: 10px 0 10px 0;
-        transform: none;
-      }
-      .hero-overlay {
-        padding-left: 20px;
-        padding-top: 40px;
-      }
-      .hero-section, .hero-bg {
-        min-height: 300px;
-        height: 55vh;
-      }
-      .hero-bg {
-        width: 200vw;
-        object-position: 90% center;
-      }
-      .logo-section {
-        min-width: 0;
-      }
-      .logo-icon {
-        margin-left: 10px;
-      }
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <div class="nav-bar">
-      <div class="logo-section">
-        <div class="logo-icon">
-          <img src="images/pngegg.png" alt="charity: water logo" />
-        </div>
-      </div>
-      <div class="top-row">
-        <nav>
-          <a href="#">TAKE ACTION</a>
-          <a href="#">ABOUT US</a>
-          <a href="#">WHY WATER?</a>
-        </nav>
-        <div class="search-container">
-          <span class="search-icon">
-            <svg viewBox="0 0 20 20" fill="none">
-              <circle cx="9" cy="9" r="7" stroke="#f7ce54" stroke-width="2"/>
-              <line x1="14.4142" y1="14.7071" x2="18" y2="18.2929" stroke="#f7ce54" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-          </span>
-          <input class="search-input" id="searchInput" type="text" placeholder="Search..." aria-label="Search">
-          <button class="search-clear" id="searchClear" title="Clear" style="display:none;" tabindex="0">&times;</button>
-        </div>
-      </div>
-    </div>
-  </header>
-  <main>
-    <div class="hero-section">
-      <img src="images/Madagascar_2019_CG-2736 (1).jpg"
-           alt="Girl drinking water" class="hero-bg" />
-      <div class="hero-overlay">
-        <h1>Give life through water.</h1>
-        <p class="subtitle">
-          Clean water isn’t a luxury—it’s a right. At charity: water, your 50¢ from every coffee can fund safe, community-owned water projects, bringing lasting hope to those in need.
-        </p>
-        <button class="help-btn">Help now</button>
-        <p class="subscription">
-          Take a subscription plan <a href="#">here.</a>
-        </p>
-      </div>
-    </div>
-    <script>
-      // Show/hide clear button and clear input on click
-      const input = document.getElementById('searchInput');
-      const clearBtn = document.getElementById('searchClear');
-      input.addEventListener('input', function() {
-        clearBtn.style.display = this.value ? 'flex' : 'none';
-      });
-      clearBtn.addEventListener('click', function() {
-        input.value = '';
-        input.focus();
-        clearBtn.style.display = 'none';
-      });
-      // Accessibility: allow clearing with enter/space
-      clearBtn.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          clearBtn.click();
-        }
-      });
-    </script>
-  </main>
-</body>
-</html>
+<html lang="en"> 
+
+<head> 
+
+<meta charset="UTF-8"> 
+
+<title>Charity: Water - Give life through water.</title> 
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+<style> 
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap'); 
+
+ 
+
+body { 
+
+margin: 0; 
+
+padding: 0; 
+
+font-family: 'Open Sans', Arial, sans-serif; 
+
+background: #fafafa; 
+
+} 
+
+ 
+
+header { 
+
+width: 100%; 
+
+} 
+
+ 
+
+.nav-bar { 
+
+display: flex; 
+
+align-items: center; 
+
+background: #f7ce54; 
+
+height: 70px; 
+
+position: relative; 
+
+z-index: 2; 
+
+padding: 0; 
+
+} 
+
+ 
+
+.logo-section { 
+
+display: flex; 
+
+align-items: center; 
+
+background: #fff; 
+
+padding: 0 28px 0 0; 
+
+height: 70px; 
+
+position: relative; 
+
+min-width: 120px; 
+
+} 
+
+ 
+
+.logo-icon { 
+
+display: flex; 
+
+align-items: center; 
+
+justify-content: flex-start; 
+
+background: #fff; 
+
+padding: 0; 
+
+margin: 0; 
+
+width: auto; 
+
+height: auto; 
+
+border-radius: 6px; 
+
+box-sizing: border-box; 
+
+margin-right: 12px; 
+
+margin-left: 24px; 
+
+} 
+
+ 
+
+.logo-icon img { 
+
+display: block; 
+
+max-height: 56px; 
+
+max-width: 160px; 
+
+width: auto; 
+
+height: 56px; 
+
+object-fit: contain; 
+
+background: #fff; 
+
+border-radius: 6px; 
+
+} 
+
+ 
+
+.top-row { 
+
+display: flex; 
+
+align-items: center; 
+
+flex: 1; 
+
+height: 70px; 
+
+width: 100%; 
+
+margin-left: 0; 
+
+position: relative; 
+
+} 
+
+ 
+
+nav { 
+
+display: flex; 
+
+flex: 1; 
+
+justify-content: flex-end; 
+
+gap: 90px; 
+
+margin-right: 460px; 
+
+} 
+
+ 
+
+nav a { 
+
+color: #fff; 
+
+font-size: 20px; 
+
+font-weight: 400; 
+
+font-family: 'Open Sans', Arial, sans-serif; 
+
+text-decoration: none; 
+
+letter-spacing: 0.06em; 
+
+padding: 0 8px; 
+
+transition: color 0.2s; 
+
+line-height: 70px; 
+
+position: relative; 
+
+} 
+
+ 
+
+nav a:hover { 
+
+color: #444; 
+
+} 
+
+ 
+
+.search-container { 
+
+display: flex; 
+
+align-items: center; 
+
+background: #fff; 
+
+border-radius: 6px; 
+
+padding: 0 12px 0 6px; 
+
+height: 42px; 
+
+min-width: 230px; 
+
+box-shadow: 0 1px 3px rgba(0,0,0,0.07); 
+
+border: none; 
+
+position: absolute; 
+
+right: 90px; 
+
+top: 50%; 
+
+transform: translateY(-50%); 
+
+} 
+
+ 
+
+.search-input { 
+
+border: none; 
+
+outline: none; 
+
+font-size: 18px; 
+
+height: 28px; 
+
+background: transparent; 
+
+width: 140px; 
+
+padding: 0 6px 0 8px; 
+
+color: #333; 
+
+font-family: 'Open Sans', Arial, sans-serif; 
+
+} 
+
+ 
+
+.search-input::placeholder { 
+
+color: #bbb; 
+
+font-size: 17px; 
+
+letter-spacing: 0.01em; 
+
+} 
+
+ 
+
+.search-icon { 
+
+display: flex; 
+
+align-items: center; 
+
+justify-content: center; 
+
+margin-right: 8px; 
+
+margin-left: 2px; 
+
+width: 22px; 
+
+height: 22px; 
+
+} 
+
+ 
+
+.search-icon svg { 
+
+width: 20px; 
+
+height: 20px; 
+
+display: block; 
+
+color: #f7ce54; 
+
+} 
+
+ 
+
+.search-clear { 
+
+cursor: pointer; 
+
+border: none; 
+
+background: transparent; 
+
+color: #bbb; 
+
+font-size: 21px; 
+
+margin-left: 8px; 
+
+display: flex; 
+
+align-items: center; 
+
+justify-content: center; 
+
+width: 22px; 
+
+height: 22px; 
+
+transition: color 0.2s; 
+
+} 
+
+ 
+
+.search-clear:hover { 
+
+color: #e57373; 
+
+} 
+
+ 
+
+.hero-section { 
+
+position: relative; 
+
+width: 100vw; 
+
+height: 100vh; 
+
+min-height: 560px; 
+
+overflow: hidden; 
+
+display: flex; 
+
+align-items: stretch; 
+
+background: #000; 
+
+} 
+
+ 
+
+.hero-bg { 
+
+position: absolute; 
+
+top: 0; left: 0; bottom: 0; right: 0; 
+
+width: 120vw; 
+
+height: 110vh; 
+
+min-height: 650px; 
+
+object-fit: cover; 
+
+object-position: 80% center; 
+
+z-index: 1; 
+
+background: #000; 
+
+transition: object-position 0.3s; 
+
+} 
+
+ 
+
+.hero-overlay { 
+
+position: relative; 
+
+z-index: 2; 
+
+color: #fff; 
+
+max-width: 700px; 
+
+padding: 90px 0 0 70px; 
+
+display: flex; 
+
+flex-direction: column; 
+
+align-items: flex-start; 
+
+} 
+
+ 
+
+.hero-overlay h1 { 
+
+font-family: 'Georgia Pro', Georgia, serif !important; 
+
+font-size: 54px; 
+
+font-weight: 700; 
+
+margin: 0 0 20px 0; 
+
+line-height: 1.08; 
+
+text-shadow: 0 2px 14px rgba(0,0,0,0.22); 
+
+} 
+
+ 
+
+.hero-overlay .subtitle { 
+
+font-size: 23px; 
+
+font-weight: 400; 
+
+margin: 0 0 38px 0; 
+
+line-height: 1.4; 
+
+text-shadow: 0 2px 14px rgba(0,0,0,0.18); 
+
+font-family: 'Avenir Next Arabic', 'Avenir', Arial, sans-serif !important; 
+
+} 
+
+ 
+
+.help-btn { 
+
+background: #f7ce54; 
+
+color: #fff; 
+
+font-size: 22px; 
+
+border: none; 
+
+border-radius: 28px; 
+
+padding: 14px 38px; 
+
+font-weight: 600; 
+
+margin-bottom: 32px; 
+
+box-shadow: 0 6px 24px rgba(0,0,0,0.09); 
+
+cursor: pointer; 
+
+transition: background 0.2s; 
+
+} 
+
+ 
+
+.help-btn:hover { 
+
+background: #f4b800; 
+
+} 
+
+ 
+
+.subscription { 
+
+font-size: 21px; 
+
+color: #fff; 
+
+text-shadow: 0 2px 12px rgba(0,0,0,0.16); 
+
+font-family: 'Open Sans', Arial, sans-serif; 
+
+} 
+
+ 
+
+.subscription a { 
+
+color: #9ac3ff; 
+
+text-decoration: underline; 
+
+font-family: inherit; 
+
+} 
+
+ 
+
+/* ✅ Responsive styles added below */ 
+
+@media (max-width: 1300px) { 
+
+nav { 
+
+margin-right: 210px; 
+
+gap: 60px; 
+
+} 
+
+} 
+
+ 
+
+@media (max-width: 1100px) { 
+
+nav { 
+
+margin-right: 120px; 
+
+gap: 40px; 
+
+} 
+
+ 
+
+.search-container { 
+
+right: 40px; 
+
+} 
+
+ 
+
+.hero-overlay { 
+
+padding: 60px 20px 0 20px; 
+
+max-width: 95vw; 
+
+} 
+
+ 
+
+.hero-bg { 
+
+width: 160vw; 
+
+min-height: 450px; 
+
+height: 70vh; 
+
+object-position: 84% center; 
+
+} 
+
+} 
+
+ 
+
+@media (max-width: 900px) { 
+
+nav { 
+
+margin-right: 10px; 
+
+gap: 22px; 
+
+} 
+
+} 
+
+ 
+
+@media (max-width: 750px) { 
+
+.nav-bar, 
+
+.top-row { 
+
+flex-direction: column; 
+
+align-items: stretch; 
+
+height: auto; 
+
+} 
+
+ 
+
+nav { 
+
+justify-content: flex-start; 
+
+margin-right: 0; 
+
+gap: 18px; 
+
+} 
+
+.search-container { 
+position: static; 
+margin: 10px 0 10px 0; 
+transform: none; 
+} 
+.hero-overlay { 
+padding-left: 20px; 
+padding-top: 40px; 
+} 
+.hero-section, .hero-bg { 
+min-height: 300px; 
+height: 55vh; 
+} 
+.hero-bg { 
+width: 200vw; 
+object-position: 90% center; 
+} 
+.logo-section { 
+min-width: 0; 
+} 
+.logo-icon { 
+margin-left: 10px; 
+} 
+.hero-overlay h1 { 
+font-size: 32px; 
+} 
+.hero-overlay .subtitle { 
+font-size: 17px; 
+} 
+.help-btn { 
+font-size: 16px; 
+padding: 10px 24px; 
+} 
+.subscription { 
+font-size: 14px; 
+} 
+} 
+</style> 
+</head> 
+<body> 
+<header> 
+<div class="nav-bar"> 
+<div class="logo-section"> 
+<div class="logo-icon"> 
+<img src="images/pngegg.png" alt="charity: water logo" /> 
+</div> 
+</div> 
+<div class="top-row"> 
+<nav> 
+<a href="#">TAKE ACTION</a> 
+<a href="#">ABOUT US</a> 
+<a href="#">WHY WATER?</a> 
+</nav> 
+<div class="search-container"> 
+<span class="search-icon"> 
+<svg viewBox="0 0 20 20" fill="none"> 
+<circle cx="9" cy="9" r="7" stroke="#f7ce54" stroke-width="2"/> 
+<line x1="14.4142" y1="14.7071" x2="18" y2="18.2929" stroke="#f7ce54" stroke-width="2" stroke-linecap="round"/> 
+</svg> 
+</span> 
+<input class="search-input" id="searchInput" type="text" placeholder="Search..." aria-label="Search"> 
+<button class="search-clear" id="searchClear" title="Clear" style="display:none;" tabindex="0">&times;</button> 
+</div> 
+</div> 
+</div> 
+</header> 
+<main> 
+<div class="hero-section"> 
+<img src="images/Madagascar_2019_CG-2736 (1).jpg" alt="Girl drinking water" class="hero-bg" /> 
+<div class="hero-overlay"> 
+<h1>Give life through water.</h1> 
+<p class="subtitle"> 
+Clean water isn’t a luxury—it’s a right. At charity: water, your 50¢ from every coffee can fund safe, community-owned water projects, bringing lasting hope to those in need. 
+</p> 
+<button class="help-btn">Help now</button> 
+<p class="subscription"> 
+Take a subscription plan <a href="#">here.</a> 
+</p> 
+</div> 
+</div> 
+</main> 
+<script> 
+const input = document.getElementById('searchInput'); 
+const clearBtn = document.getElementById('searchClear'); 
+input.addEventListener('input', function () { 
+clearBtn.style.display = this.value ? 'flex' : 'none'; 
+}); 
+clearBtn.addEventListener('click', function () { 
+input.value = ''; 
+input.focus(); 
+clearBtn.style.display = 'none'; 
+}); 
+clearBtn.addEventListener('keydown', function (e) { 
+if (e.key === 'Enter' || e.key === ' ') { 
+e.preventDefault(); 
+clearBtn.click(); 
+} 
+}); 
+</script> 
+</body> 
+</html> 
